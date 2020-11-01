@@ -10,6 +10,7 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"/>
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Weather App</title>
   </head>
 
@@ -30,19 +31,23 @@
                   <input class="col-8" type="text" placeholder="Enter a city..." name="" id="search-form">
                   <input id="submit-button" type="submit" placeholder="Search">
                 </form>
-                <button id="current-location">Current location</button>
+                <button id="current-location-btn">Current location</button>
               </div>
 
         <br>
         <div class="weather-info">
         <center>
-        <h1 class="city-name">Birmingham</h1>
-        <h2>5<small> °c / °f</small></h2>
+        <h1 id="city">Birmingham</h1>
+        <h2 style="display: inline;" id="temperature"></h2> 
+       <h2 style="display: inline;" id="units"><a href="##">°c</a> / <a href="#">°f</a></h2> 
+      
+    <br>
+    <br>
         <img src="images/sun.png" alt="" class="sun-icon" width="50">
         <ul>
-          <li>It is currently cloudy</li>
-          <li>Precipitation: 0%</li>
-          <li>Wind: 1</li>
+          <li id="description">It is currently cloudy</li>
+          <li >Humidity: <span id="humidity"></span>%</li>
+          <li >Wind: <span id="windSpeed"></span> km/h</li>
         </ul>
         </div>
       </center>

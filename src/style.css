@@ -31,8 +31,15 @@ li {
 
 .current-location-btn {
   color: grey;
+  position: fixed;
 }
 
 form {
   display: inline-flex;
+}
+
+.units,
+.temperature {
+  display: inline;
+  clear: none;
 }
