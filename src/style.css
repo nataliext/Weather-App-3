@@ -10,6 +10,7 @@ body {
   border: 1px solid;
   border-radius: 5px;
   font-family: "Staatliches", cursive;
+  background: #eaeaea;
 }
 
 ul {
@@ -42,4 +43,8 @@ form {
 .temperature {
   display: inline;
   clear: none;
+}
+
+.current-location-btn {
+  border: black;
 }

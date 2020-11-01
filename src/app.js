@@ -16,7 +16,9 @@ date.innerHTML = `${day}`;
 
 //time
 let hours = now.getHours();
+if (hours < 10) hour = `0${hours}`;
 let minutes = now.getMinutes();
+if (minutes < 10) minutes = `0${minutes}`;
 
 let time = document.querySelector("#time");
 time.innerHTML = `${hours}:${minutes}`;
@@ -31,7 +33,7 @@ function displayTemperature(response) {
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = response.data.main.humidity;
   let windSpeedElement = document.querySelector("#windSpeed");
-  windSpeedElement.innerHTML = response.data.wind.speed;
+  windSpeedElement.innerHTML = Math.round(response.data.wind.speed);
 }
 
 let city = "Birmingham";
