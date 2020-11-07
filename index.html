@@ -13,24 +13,22 @@
 </head>
 
 <body>
-    <div class="container">
-
         <div class="weather-app">
             <div class="container">
-
                 <div class="row">
                     <div id="date" class="col-2">
                         date
                     </div>
-                    <div id="time" class="col-2">
+                    <div id="time" class="col">
                         time
                     </div>
-<form id="search-form" class="mb-4">
-    <input id="city-input" type="search" placeholder="Enter a city..." autocomplete="off">
-    <input type="submit" value="search" class="">
-</form>
-
-  
+<form id="search-form">
+    <input class="mb-3" class="col" id="city-input" type="search" placeholder="Enter a city..." autocomplete="off">
+    <input class="mb-3" class="col" type="submit" value="search" class="">
+</form><button class="mb-3" class="col" id="current-location-btn">
+    Current Location
+</button>
+ </div>
             </div>
                 <div class="weather-info">
                     <center>
@@ -40,7 +38,6 @@
                         <h2 style="display: inline;" id="units"><a href="##" id="celcius-link" class="active">°c</a> / <a href="#" id="fahrenheit-link">°f</a></h2>
                         </div>
                     
-                        <br>
                         <img src="" alt="" id="icon" width="50">
                         <ul>
                             <li id="description">It is currently cloudy</li>
@@ -48,7 +45,6 @@
                             <li>Wind: <span id="windSpeed"></span> km/h</li>
                         </ul>
                 </div>
-                </center>
 
                 <small>
                     <a href="https://github.com/nataliext/Weather-App-3" target="blank">Open-source code</a> by Natalie

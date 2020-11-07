@@ -63,7 +63,7 @@ function handleSubmit(event) {
   }
 }
 
-search("Birmingham");
+search("Sydney");
 
 let celciusTemperature = null;
 
@@ -88,3 +88,30 @@ function displayCelciusTemperature(event) {
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(celciusTemperature);
 }
+
+//current location
+function showPosition(position) {
+  console.log(position.coords.latitude);
+  console.log(position.coords.longitude);
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  let apiKey = "f0efa6d2628a33743d96ce2e48f71ed5";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showTemperature);
+}
+
+function getCurrentPosition() {
+  navigator.geolocation.getCurrentPosition(showPosition);
+}
+
+function showTemperature(response) {
+  let temperature = Math.round(response.data.main.temp);
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = `${temperature}`;
+  let currentLocation = document.querySelector("#city");
+  let location = response.data.name;
+  currentLocation.innerHTML = location;
+}
+
+let button = document.querySelector("#current-location-btn");
+button.addEventListener("click", getCurrentPosition);

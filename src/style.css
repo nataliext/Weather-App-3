@@ -12,6 +12,10 @@ body {
   font-family: "Staatliches", cursive;
 }
 
+.city {
+  line-height: 20pt;
+}
+
 ul {
   padding: 0;
   margin: 0;
