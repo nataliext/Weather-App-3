@@ -30,33 +30,7 @@ function displayTemperature(response) {
   let descriptionElement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
   let windSpeedElement = document.querySelector("#windSpeed");
-  let icon = document.querySelector("#icon");
-  let code = response.data.weather[0].icon;
-  if (code === "11d") {
-    icon.setAttribute("src", "images/thunderstorm.png");
-  } else if (code === "09d") {
-    icon.setAttribute("src", "images/rain.png");
-  } else if (code === "10d") {
-    icon.setAttribute("src", "images/showerain.png");
-  } else if (code === "09d") {
-    icon.setAttribute("src", "images/rain.png");
-  } else if (code === "13d") {
-    icon.setAttribute("src", "images/snow.png");
-  } else if (code === "50d") {
-    icon.setAttribute("src", "images/mist.png");
-  } else if (code === "01d") {
-    icon.setAttribute("src", "images/sun.png");
-  } else if (code === "01n") {
-    icon.setAttribute("src", "images/moon.png");
-  } else if (code === "02d") {
-    icon.setAttribute("src", "images/fewclouds.png");
-  } else if (code === "02n") {
-    icon.setAttribute("src", "images/moon.png");
-  } else if (code === "03d" || code === "03n") {
-    icon.setAttribute("src", "images/scatterclouds.png");
-  } else if (code === "04d" || code === "04n") {
-    icon.setAttribute("src", "images/brokenclouds.png");
-  }
+  let iconElement = document.querySelector("#icon");
 
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
   descriptionElement.innerHTML = response.data.weather[0].description;
@@ -64,12 +38,28 @@ function displayTemperature(response) {
   windSpeedElement.innerHTML = Math.round(response.data.wind.speed);
   iconElement.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${code}@2x.png`
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
-let city = "sydney";
-let apiKey = "f0efa6d2628a33743d96ce2e48f71ed5";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+function search(city) {
+  let apiKey = "f0efa6d2628a33743d96ce2e48f71ed5";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
 
-axios.get(apiUrl).then(displayTemperature);
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+  console.log(cityInputElement.value);
+
+  let currentCity = document.querySelector("#city");
+  if (cityInputElement.value) {
+    currentCity.innerHTML = `${cityInputElement.value}`;
+  }
+}
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
