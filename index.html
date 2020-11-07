@@ -26,7 +26,7 @@
                         time
                     </div>
 <form id="search-form" class="mb-4">
-    <input id="city-input" type="search" placeholder="Enter a city..." >
+    <input id="city-input" type="search" placeholder="Enter a city..." autocomplete="off">
     <input type="submit" value="search" class="">
 </form>
 
@@ -35,9 +35,10 @@
                 <div class="weather-info">
                     <center>
                         <h1 id="city">Birmingham</h1>
+                        <div class="weather-temperature">
                         <h2 style="display: inline;" id="temperature">2</h2>
-                        <h2 style="display: inline;" id="units"><a href="##">°c</a> / <a href="#">°f</a></h2>
-
+                        <h2 style="display: inline;" id="units"><a href="##" id="celcius-link" class="active">°c</a> / <a href="#" id="fahrenheit-link">°f</a></h2>
+                        </div>
                     
                         <br>
                         <img src="" alt="" id="icon" width="50">

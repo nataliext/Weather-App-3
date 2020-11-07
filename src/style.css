@@ -47,3 +47,8 @@ form {
 .current-location-btn {
   border: black;
 }
+
+.celcius-link:hover,
+.fahrenheit-link:hover {
+  color: black;
+}
