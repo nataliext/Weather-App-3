@@ -108,6 +108,23 @@ function showTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = `${temperature}`;
+  let descriptionElement = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let windSpeedElement = document.querySelector("#windSpeed");
+  let iconElement = document.querySelector("#icon");
+
+  celciusTemperature = response.data.main.temp;
+
+  temperatureElement.innerHTML = Math.round(celciusTemperature);
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  humidityElement.innerHTML = response.data.main.humidity;
+  windSpeedElement.innerHTML = Math.round(response.data.wind.speed);
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
+
   let currentLocation = document.querySelector("#city");
   let location = response.data.name;
   currentLocation.innerHTML = location;
@@ -115,3 +132,31 @@ function showTemperature(response) {
 
 let button = document.querySelector("#current-location-btn");
 button.addEventListener("click", getCurrentPosition);
+
+function displayForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
+
+  for (let index = 0; index < 6; index++) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
+      <div class="col-2">
+        <h3>
+          ${formatHours(forecast.dt * 1000)}
+        </h3>
+        <img
+          src="http://openweathermap.org/img/wn/${
+            forecast.weather[0].icon
+          }@2x.png"
+        />
+        <div class="weather-forecast-temperature">
+          <strong>
+            ${Math.round(forecast.main.temp_max)}°
+          </strong>
+          ${Math.round(forecast.main.temp_min)}°
+        </div>
+      </div>
+    `;
+  }
+}
