@@ -1,18 +1,19 @@
 //date
-let now = new Date();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
 
-let day = days[now.getDay()];
-let date = document.querySelector("#date");
-date.innerHTML = `${day}`;
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  return `${day} ${formatHours(timestamp)}`;
+}
 
 //time
 function formatHours(timestamp) {
@@ -36,9 +37,13 @@ function displayTemperature(response) {
   let descriptionElement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
   let windSpeedElement = document.querySelector("#windSpeed");
+
   let iconElement = document.querySelector("#icon");
+  let dateElement = document.querySelector("#date");
 
   celciusTemperature = response.data.main.temp;
+
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
 
   temperatureElement.innerHTML = Math.round(celciusTemperature);
   descriptionElement.innerHTML = response.data.weather[0].description;
@@ -142,6 +147,3 @@ function showTemperature(response) {
   let location = response.data.name;
   currentLocation.innerHTML = location;
 }
-
-let button = document.querySelector("#current-location-btn");
-button.addEventListener("click", getCurrentPosition);
