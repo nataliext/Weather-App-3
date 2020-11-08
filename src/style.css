@@ -56,3 +56,13 @@ form {
 .fahrenheit-link:hover {
   color: black;
 }
+
+.forecast {
+  margin: 0 auto;
+  padding: ;
+  text-align: center;
+}
+
+.forecast-icon {
+  display: block;
+}
